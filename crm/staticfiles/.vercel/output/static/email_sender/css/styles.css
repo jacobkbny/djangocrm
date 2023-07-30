@@ -1,0 +1,11 @@
+/* Make original inputs display in a line */
+.original-input {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Make new inputs display in a column */
+.new-input {
+    display: block;
+    margin-bottom: 10px;
+}

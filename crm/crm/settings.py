@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+WSGI_APPLICATION = 'crm.wsgi.app'
 
 # Application definition
 

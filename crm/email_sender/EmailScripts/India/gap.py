@@ -25,5 +25,4 @@ def gap_mail(email_address, nickname):
 
 &nbsp;
     """
-    # yag.send(email_address, "We Miss You!", html_msg)
-    print("gap",email_address,nickname)
+    yag.send(email_address, "We Miss You!", html_msg)

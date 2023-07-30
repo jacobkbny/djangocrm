@@ -1,0 +1,25 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'email_sender/css/styles.css' %}">
+        <p2> {{target}} Mail page <p2> 
+        <body>
+            <br><br>
+            <div>
+                <form id="dynamicForm" action="/{{target}}/" method="post">
+                    <div style="display: flex;"> <!-- Wrap the initial divs in a flex container -->
+                        <div id="emailInputs">
+                            <input type="text" name="email" placeholder="Email Address"/>
+                        </div>
+                        <div id="nameInputs">
+                            <input type="text" name="name" placeholder="Name"/>
+                        </div>
+                    </div>
+                    <input type="submit">
+                </form>
+            </div>
+            <script src="{% static 'email_sender/js/main.js' %}"></script>
+        </body>
+    </head>
+</html>

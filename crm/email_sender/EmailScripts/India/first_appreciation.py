@@ -1,6 +1,9 @@
 import yagmail
+import os
+from dotenv import load_dotenv
+
 def first_appreciation_mail(email_address, name):
-    yag = yagmail.SMTP("celebeindia@gmail.com", "kornrorckntdslzz")
+    yag = yagmail.SMTP("celebeindia@gmail.com", os.getenv("INDIA_GMAIL_PASSWORD"))
 
     html_msg = f"""
     <strong>Dear {name},</strong>

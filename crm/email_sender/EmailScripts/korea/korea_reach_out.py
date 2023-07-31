@@ -1,8 +1,11 @@
 import yagmail
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+import os 
+from dotenv import load_dotenv
+load_dotenv()
 def korean_email(email_address, name):
-    yag = yagmail.SMTP("martin@celebe.io", "ywgyesirdbtnlhbk")
+    yag = yagmail.SMTP("martin@celebe.io", os.getenv("KOREAN_GMAIL_PASSWORD"))
     html_msg = f"""
            <span style="font-size:small"><span style="color:#222222"><span style="font-family:Arial,Helvetica,sans-serif"><span style="background-color:#ffffff"><span style="font-size:15px"><span style="color:#000000"><span style="font-family:Arial">안녕하세요 :-) {name}님!</span></span></span></span></span></span></span>
 <span style="font-size:small"><span style="color:#222222"><span style="font-family:Arial,Helvetica,sans-serif"><span style="background-color:#ffffff"><span style="font-family:&quot;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif"><span style="font-family:Arial,Helvetica,sans-serif"><span style="font-size:15px"><span style="color:#000000"><span style="font-family:Arial"><strong>저희는 대한민국 숏폼 플랫폼,&nbsp;</strong></span></span></span><span style="font-size:15px"><span style="color:#000000"><span style="font-family:Arial"><strong>셀러비코리아&nbsp;</strong></span></span></span><span style="font-size:15px"><span style="color:#000000"><span style="font-family:Arial"><strong>입니다.</strong></span></span></span></span></span></span></span></span></span>
@@ -51,21 +54,9 @@ def korean_email(email_address, name):
 &nbsp;
     """
     yag.send(email_address, f"[셀러비코리아] {name}님, 안녕하세요! 영상들 잘 보고 연락드립니다. :-)", html_msg)
-#     credentials={
-#   "type": "service_account",
-#   "project_id": "emailtrackerkorea",
-#   "private_key_id": "adc198a65029a41cb7db831f45aa98b1f215857c",
-#   "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDN1RhIog1VHOEY\n8BekmEK6o5K/RdiXJyDqRrBfQMwlU5Owf4p+xx61378ilTkUQocOas+fYxSkQe7O\nXIUpPdLJ/uvoICZ+ReFPDtYpeWpA3azAV7mxnjqjQISfMCPTfSYLUWnK4fLnL85J\nUageHNjgy8amb+/eKlKE/OYOq/pqXEutJk/0Q+DkN10BUZfSP/zfiSHKKaae1Zix\nrlgXvpcAooQP+svrKvsIeOIsB4Sv5uLi036xpj3imvLx8YdXbKSF1xYYJMctDP6/\nN0eSiRBeQZm642ZVqyhr7avY6j9rH6+XKpTkBZw2Lrs4zRFq4Az2Fm4RinpE8NkC\n43iYbN6jAgMBAAECggEAS5Ei77OS+n72Qx4OSA7gXL4l55QgfunOI0SdhvL2n/ON\norxIX+ABrdr9xJgNUxtTkx7yp70L/Hv6TQfZmXkJlMBC4r8+8pf8LnaveJ2LPVJF\nFH6Afa2uMHZE2l6loITvPTOACAypDWhXL0LL2nZTxz/45+zrnuBh2FIysgtAjeA4\ngoKGGM1Nw7ehae5Q8bSPJKxR3m8+N/IfOteBFNgYZ+SU7ragbApVPLW7hizerb0B\nfoeNTy4hGkqFL2PsoUri4+5QpKjeMN4pTS8cZFoig+nOP60WehGdCE4R0lT77Omk\nWkclgs+Fc8McTkK3GNEYJQIHR8CLJIqQ3/KbN9h5aQKBgQD5jjyJvPqi50bIGtZB\nAvRfiyjhWm+qkin9mhGllYcNsiLSwV7IBoGBQmgjosoHQHdn7jIZdKFRx4DHAsRN\nvCkS8W6BnjwGDwO6qPW72czADoMK9SLK4Ar80PU5E5OHp/oRI4gpzCi0L9mG154r\nZ4KlfmwYl9ndtmFvKTmLiuMHywKBgQDTJdAROTESsb0L0N6sjPuE+PbSLwOGioEQ\n3Bh7aW32OhNkN98XuV7/xtpjXT7dNBGIhr3b1/O1lpDRGPlgeLdYHakLx/PM1Exe\noo8tuWvs/6j/6VVw7M6TL2PTBRr7pUZdljQMUxbafOL61dwJcYh5hFB2HC74snDc\nr5rLW2S5iQKBgCLNx3ueM4ZMov59X6wpcVNx4P2s0y4CvIB14Egrlm4+jcS+2y0i\nWyVf0Y5Gwc5JG14PRkVukqEJJdibdi0xNLlDmpnRK6XcqjR6I+tS8M9INtZsYbHR\nlTa1Hb4cENM2hhWl0vOhWXvnwHqhz5lWEk5qV0EGzIezS9to8HGZqRgJAoGBAIxe\nJuRMUQNMhZDFWkL7tnm/yNYRyxY2HXdH2j6w6Bk4oouNWRI8eZswZx6HbrM/WiiY\n6r6r4ahmX/+hyqcHmVtK3IaodrtEp0CCcQzEp6r2izMVu2dHBk1yw7oVOsrwJMcy\ng4dt9VNqkrqOUak1gLTH8XWTZuaOOdl8JDvslhmBAoGAXBx+4rhzhraO0OH4/55G\nimL+w3QEdUIgDAPOgn8O08zd7aZSxULty+b8a3EcApCn5mEWiuO/fFdEzpsYdtuc\n8DNMk3yvtXpz1d82DXXlSb4ho8tqUQ2mj6NSxYFBdybL6QPd4foIVUzwsBAK9UyL\n/adL+pg0KBjTK74wBxwgZ/c=\n-----END PRIVATE KEY-----\n",
-#   "client_email": "emailtrackerkorea@emailtrackerkorea.iam.gserviceaccount.com",
-#   "client_id": "107513966570905976781",
-#   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-#   "token_uri": "https://oauth2.googleapis.com/token",
-#   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-#   "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/emailtrackerkorea%40emailtrackerkorea.iam.gserviceaccount.com",
-#   "universe_domain": "googleapis.com"
-# }
+    credentials = os.getenv("KOREAN_CREDENTIAL")
 
-#     gc = gspread.service_account_from_dict(credentials)
-#     spreadsheet = gc.open('EmailTrackerKorea')
-#     worksheet = spreadsheet.get_worksheet(0)
-#     worksheet.append_row([name, email_address])
+    gc = gspread.service_account_from_dict(credentials)
+    spreadsheet = gc.open('[유튜버] 크리에이터 컨택')
+    worksheet = spreadsheet.get_worksheet(0)
+    worksheet.append_row([name, email_address])

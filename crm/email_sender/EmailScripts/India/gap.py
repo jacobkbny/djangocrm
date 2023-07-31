@@ -1,6 +1,10 @@
 import yagmail
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 def gap_mail(email_address, nickname):
-    yag = yagmail.SMTP("celebeindia@gmail.com", "kornrorckntdslzz")
+    yag = yagmail.SMTP("celebeindia@gmail.com", os.getenv("INDIA_GMAIL_PASSWORD"))
     html_msg = f"""
     <span style="font-size:13.999999999999998pt"><span style="font-family:'Times New Roman'"><span style="color:#222222"><strong><em>Dear {nickname},</em></strong></span></span></span>
 
